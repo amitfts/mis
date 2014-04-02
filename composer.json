@@ -1,12 +1,12 @@
 {
-    "name": "mrjuliuss/syntara",
+    "name": "efusionsoft/mis",
     "description": "Admin package for laravel 4",
     "keywords": ["laravel","admin","sentry", "authentication", "user", "group", "permission"],
     "license": "MIT",
     "authors": [
         {
-            "name": "MrJuliuss",
-            "email": "julien.richarte@gmail.com"
+            "name": "efusionsoft",
+            "email": "amit.garg@efusionsoft.com"
         }
     ],
     "require":
@@ -30,7 +30,7 @@
             "src/services"
         ],
         "psr-0": {
-            "Mrjuliuss\\Syntara": "src/"
+            "Efusionsoft\\Mis": "src/"
         }
     },
 
