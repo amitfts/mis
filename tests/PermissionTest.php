@@ -1,7 +1,7 @@
-<?php namespace MrJuliuss\Syntara\Tests;
+<?php namespace Efusionsoft\Mis\Tests;
 
 use Mockery as m;
-use MrJuliuss\Syntara\Models\Permissions\Permission;
+use Efusionsoft\Mis\Models\Permissions\Permission;
 use PHPUnit_Framework_TestCase;
 
 class PermissionTest extends PHPUnit_Framework_TestCase
@@ -39,7 +39,7 @@ class PermissionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\NameRequiredException
+     * @expectedException Efusionsoft\Mis\Models\Permissions\NameRequiredException
      */
     public function testValidationThrowsNameRequiredExceptionIfNoneGiven()
     {
@@ -48,7 +48,7 @@ class PermissionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\ValueRequiredException
+     * @expectedException Efusionsoft\Mis\Models\Permissions\ValueRequiredException
      */
     public function testValidationThrowsValueRequiredException()
     {
@@ -58,15 +58,15 @@ class PermissionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\PermissionExistsException
+     * @expectedException Efusionsoft\Mis\Models\Permissions\PermissionExistsException
      */
     public function testValidationThrowsPermissionExistsException()
     {
-        $persistedPermission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $persistedPermission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $persistedPermission->shouldReceive('hasGetMutator')->andReturn(false);
         $persistedPermission->shouldReceive('getId')->once()->andReturn(42);
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission[newQuery]');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission[newQuery]');
         $permission->id = 43;
         $permission->name = 'List users';
         $permission->value = 'view-users-list';
@@ -82,11 +82,11 @@ class PermissionTest extends PHPUnit_Framework_TestCase
 
     public function testValidationPermission()
     {
-        $persistedPermission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $persistedPermission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $persistedPermission->shouldReceive('hasGetMutator')->andReturn(false);
         $persistedPermission->shouldReceive('getId')->once()->andReturn(43);
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission[newQuery]');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission[newQuery]');
         $permission->id = 43;
         $permission->name = 'List users';
         $permission->value = 'view-users-list';

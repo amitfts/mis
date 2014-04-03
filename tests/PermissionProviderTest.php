@@ -1,7 +1,7 @@
-<?php namespace MrJuliuss\Syntara\Tests;
+<?php namespace Efusionsoft\Mis\Tests;
 
 use Mockery as m;
-use MrJuliuss\Syntara\Models\Permissions\PermissionProvider;
+use Efusionsoft\Mis\Models\Permissions\PermissionProvider;
 use PHPUnit_Framework_TestCase;
 
 class PermissionProviderTest extends PHPUnit_Framework_TestCase {
@@ -24,19 +24,19 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
             'description' => 'Foo Bar'
         );
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
         $permission->shouldReceive('fill')->with($attributes)->once();
         $permission->shouldReceive('save')->once()->andReturn($permission);
 
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
         $provider->shouldReceive('createModel')->once()->andReturn($permission);
 
         $this->assertEquals($permission, $provider->createPermission($attributes));
     }
 
     /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\ValueRequiredException
+     * @expectedException Efusionsoft\Mis\Models\Permissions\ValueRequiredException
      */
     public function testCreatePermissionInvalidValue()
     {
@@ -46,19 +46,19 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
             'description' => 'Foo Bar'
         );
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
         $permission->shouldReceive('fill')->with($attributes)->once();
-        $permission->shouldReceive('save')->once()->andThrow('MrJuliuss\Syntara\Models\Permissions\ValueRequiredException');
+        $permission->shouldReceive('save')->once()->andThrow('Efusionsoft\Mis\Models\Permissions\ValueRequiredException');
 
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
         $provider->shouldReceive('createModel')->once()->andReturn($permission);
 
         $this->assertEquals($permission, $provider->createPermission($attributes));
     }
 
     /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\NameRequiredException
+     * @expectedException Efusionsoft\Mis\Models\Permissions\NameRequiredException
      */
     public function testCreatePermissionInvalidName()
     {
@@ -68,19 +68,19 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
             'description' => 'Foo Bar'
         );
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
         $permission->shouldReceive('fill')->with($attributes)->once();
-        $permission->shouldReceive('save')->once()->andThrow('MrJuliuss\Syntara\Models\Permissions\NameRequiredException');
+        $permission->shouldReceive('save')->once()->andThrow('Efusionsoft\Mis\Models\Permissions\NameRequiredException');
 
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
         $provider->shouldReceive('createModel')->once()->andReturn($permission);
 
         $this->assertEquals($permission, $provider->createPermission($attributes));
     }
 
     /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\PermissionExistsException
+     * @expectedException Efusionsoft\Mis\Models\Permissions\PermissionExistsException
      */
     public function testCreatePermissionThrowPermissionExists()
     {
@@ -90,12 +90,12 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
             'description' => 'Foo Bar'
         );
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
         $permission->shouldReceive('fill')->with($attributes)->once();
-        $permission->shouldReceive('save')->once()->andThrow('MrJuliuss\Syntara\Models\Permissions\PermissionExistsException');
+        $permission->shouldReceive('save')->once()->andThrow('Efusionsoft\Mis\Models\Permissions\PermissionExistsException');
 
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
         $provider->shouldReceive('createModel')->once()->andReturn($permission);
 
         $this->assertEquals($permission, $provider->createPermission($attributes));
@@ -103,9 +103,9 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
 
     public function testFindingById()
     {
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
         
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
 
         $query = m::mock('StdClass');
@@ -118,13 +118,13 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException
+     * @expectedException Efusionsoft\Mis\Models\Permissions\PermissionNotFoundException
      */
     public function testFailedFindingByIdThrowsExceptionIfNotFound()
     {
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
 
         $query = m::mock('StdClass');
@@ -138,9 +138,9 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
 
     public function testFindingByValue()
     {
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
 
         $query = m::mock('StdClass');
@@ -155,13 +155,13 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException
+     * @expectedException Efusionsoft\Mis\Models\Permissions\PermissionNotFoundException
      */
     public function testFindingByIdPermissionNotFoundException()
     {
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
 
-        $permission = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission');
+        $permission = m::mock('Efusionsoft\Mis\Models\Permissions\Permission');
         $permission->shouldReceive('hasGetMutator')->andReturn(false);
 
         $query = m::mock('StdClass');
@@ -177,12 +177,12 @@ class PermissionProviderTest extends PHPUnit_Framework_TestCase {
 
     public function testFindingAllPermissions()
     {
-        $provider = m::mock('MrJuliuss\Syntara\Models\Permissions\PermissionProvider[createModel]');
+        $provider = m::mock('Efusionsoft\Mis\Models\Permissions\PermissionProvider[createModel]');
 
         $provider->shouldReceive('createModel')->once()->andReturn($query = m::mock('StdClass'));
 
-        $permission1 = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission')->shouldReceive('hasGetMutator')->andReturn(false);
-        $permission2 = m::mock('MrJuliuss\Syntara\Models\Permissions\Permission')->shouldReceive('hasGetMutator')->andReturn(false);
+        $permission1 = m::mock('Efusionsoft\Mis\Models\Permissions\Permission')->shouldReceive('hasGetMutator')->andReturn(false);
+        $permission2 = m::mock('Efusionsoft\Mis\Models\Permissions\Permission')->shouldReceive('hasGetMutator')->andReturn(false);
 
         $query->shouldReceive('newQuery')->andReturn($query);
         $query->shouldReceive('get')->andReturn($query);

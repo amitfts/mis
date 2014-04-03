@@ -1,4 +1,4 @@
-<?php namespace MrJuliuss\Syntara\Services\Validators;
+<?php namespace Efusionsoft\Mis\Services\Validators;
 
 abstract class Validator {
 
@@ -30,9 +30,9 @@ abstract class Validator {
         }
         
         $messages = array();
-        if(is_array(trans('syntara::validation')))
+        if(is_array(trans('mis::validation')))
         {
-            $messages = trans('syntara::validation');
+            $messages = trans('mis::validation');
         }
 
         $validation = \Validator::make($this->attributes, $rules, $messages);

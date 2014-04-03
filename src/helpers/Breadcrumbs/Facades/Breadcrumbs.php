@@ -1,6 +1,6 @@
 <?php 
 
-namespace MrJuliuss\Syntara\Facades;
+namespace Efusionsoft\Mis\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

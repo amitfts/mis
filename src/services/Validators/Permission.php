@@ -1,13 +1,13 @@
-<?php namespace MrJuliuss\Syntara\Services\Validators;
+<?php namespace Efusionsoft\Mis\Services\Validators;
 
 use Config;
 
-class Permission extends \MrJuliuss\Syntara\Services\Validators\Validator
+class Permission extends \Efusionsoft\Mis\Services\Validators\Validator
 {
     public function __construct($data = null, $level = null)
     {
         parent::__construct($data, $level);
 
-        static::$rules = Config::get('syntara::validator.permission');
+        static::$rules = Config::get('mis::validator.permission');
     }
 }

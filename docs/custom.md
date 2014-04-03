@@ -7,7 +7,7 @@ You must extend your new controller with the Syntara BaseController, like this :
     /*
     app/controller/FeatureControler.php
     */
-    use MrJuliuss\Syntara\Controllers\BaseController;
+    use Efusionsoft\Mis\Controllers\BaseController;
 
     class HomeController extends BaseController
     {
@@ -48,7 +48,7 @@ HomeController getIndex view :
     app/views/index.blade.php
     */
 
-    @extends(Config::get('syntara::views.master'))
+    @extends(Config::get('mis::views.master'))
     @section('content')
 
     {{var_dump($currentUser);}}
@@ -65,13 +65,13 @@ Where 'permission' is the name of your permission
 Example :
 
     Route::get('blog/article/new', array('as' => 'new_article', 'before' => 'hasPermissions:create.article', 
-    'uses' => 'MrJuliuss\Syntara\Controllers\ArticleController@getCreate'));
+    'uses' => 'Efusionsoft\Mis\Controllers\ArticleController@getCreate'));
 
 ## Custom view
 
 To change a views by nother, you need tu override the config in ```app/routes.php``` or ```app/filters.php``` :
 
-    Config::set('syntara::views.dashboard-index', 'my-view')
+    Config::set('mis::views.dashboard-index', 'my-view')
 
 Please see ```syntara/src/config/views.php``` for more views
 
@@ -79,7 +79,7 @@ Please see ```syntara/src/config/views.php``` for more views
 
 You can set the site name with View::composer in filters.php (or routes.php)
 
-    View::composer('syntara::layouts.dashboard.master', function($view)
+    View::composer('mis::layouts.dashboard.master', function($view)
     {
         $view->with('siteName', 'My Site');
     });
@@ -88,7 +88,7 @@ You can set the site name with View::composer in filters.php (or routes.php)
 
 Pass in 2 views, 'left-nav' and 'right-nav'. These add links to the left or right of the navigation bar.
 
-    View::composer('syntara::layouts.dashboard.master', function($view)
+    View::composer('mis::layouts.dashboard.master', function($view)
     {
         $view->nest('navPages', 'left-nav');
         $view->nest('navPagesRight', 'right-nav');
@@ -110,7 +110,7 @@ View ```left-nav.blade.php``` example :
 
 To add your own favicon to Syntara, you need to use a view composer
 
-    View::composer('syntara::layouts.dashboard.master', function($view)
+    View::composer('mis::layouts.dashboard.master', function($view)
     {
         $view->nest('favicon', 'favicon_path');
         $view->nest('faviconType', 'favicon_type');
@@ -122,12 +122,12 @@ To add your own favicon to Syntara, you need to use a view composer
 ** Not yet release, available only on development branch **
 
 Possibility to change number of items per page in lists (users/groups/permissions) 
-Change the ```item-perge-page``` value in the main config file : ```app/config/packages/mrjuliuss/syntara/config.php```
+Change the ```item-perge-page``` value in the main config file : ```app/config/packages/efusionsoft\mis/config.php```
 
 
 ## Change validator rules
 
-Change rules in the published validator config file : ```app/config/packages/mrjuliuss/syntara/validator.php```
+Change rules in the published validator config file : ```app/config/packages/efusionsoft\mis/validator.php```
 
 more informations about rules : http://laravel.com/docs/validation
 
@@ -176,7 +176,7 @@ http://docs.cartalyst.com/sentry-2
 
 ** Not yet release, available only on development branch ** 
 
-While creating user, he can be automatically activated or activated from an email. By default, user is activated automatically, you can change the activation in **app/config/packages/mrjuliuss/syntara/config.php**, change ```user-activation``` from **auto** to **email**
+While creating user, he can be automatically activated or activated from an email. By default, user is activated automatically, you can change the activation in **app/config/packages/efusionsoft\mis/config.php**, change ```user-activation``` from **auto** to **email**
 
     <?php
 
@@ -197,35 +197,35 @@ Emails sent from Syntara are automatically send in a queue. For better performan
 
 Change the email activation view :
 
-In **app/config/packages/mrjuliuss/syntara/mails.php**, change ```user-activation-view``` with your custom view
+In **app/config/packages/efusionsoft\mis/mails.php**, change ```user-activation-view``` with your custom view
 
     <?php
     return array(
         /**
          * View for user activation email
          */
-        'user-activation-view' => 'syntara::mail.user-activation',
+        'user-activation-view' => 'mis::mail.user-activation',
     );
 
 ### Email object
 
 Possibility to change the email object :
 
-In **app/config/packages/mrjuliuss/syntara/mails.php**, change ```user-activation-object``` with your custom object
+In **app/config/packages/efusionsoft\mis/mails.php**, change ```user-activation-object``` with your custom object
 
 ### Email contact name
 
 Possibility to change the email contact name :
 
-In **app/config/packages/mrjuliuss/syntara/mails.php**, change ```contact``` with your custom name
+In **app/config/packages/efusionsoft\mis/mails.php**, change ```contact``` with your custom name
 
 ### Email sender
 
 Possibility to change the email sender :
 
-In **app/config/packages/mrjuliuss/syntara/mails.php**, change ```email``` with your custom email
+In **app/config/packages/efusionsoft\mis/mails.php**, change ```email``` with your custom email
 
 ## RTL (Right to Left) languages
 
 Since 1.1.19 & 1.2.3, Syntara support RTL languages.
-In **app/config/packages/mrjuliuss/syntara/config.php** , change ```direction``` from **LTR** to **RTL**
+In **app/config/packages/efusionsoft\mis/config.php** , change ```direction``` from **LTR** to **RTL**

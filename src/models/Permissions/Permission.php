@@ -1,9 +1,9 @@
-<?php namespace MrJuliuss\Syntara\Models\Permissions;
+<?php namespace Efusionsoft\Mis\Models\Permissions;
 
 use Illuminate\Database\Eloquent\Model;
-use MrJuliuss\Syntara\Models\Permissions\PermissionExistsException;
-use MrJuliuss\Syntara\Models\Permissions\NameRequiredException;
-use MrJuliuss\Syntara\Models\Permissions\ValueRequiredException;
+use Efusionsoft\Mis\Models\Permissions\PermissionExistsException;
+use Efusionsoft\Mis\Models\Permissions\NameRequiredException;
+use Efusionsoft\Mis\Models\Permissions\ValueRequiredException;
 
 class Permission extends Model
 {

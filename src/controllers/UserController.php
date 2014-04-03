@@ -1,9 +1,9 @@
 <?php 
 
-namespace MrJuliuss\Syntara\Controllers;
+namespace Efusionsoft\Mis\Controllers;
 
-use MrJuliuss\Syntara\Controllers\BaseController;
-use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
+use Efusionsoft\Mis\Controllers\BaseController;
+use Efusionsoft\Mis\Services\Validators\User as UserValidator;
 use View;
 use Input;
 use Response;
@@ -52,21 +52,21 @@ class UserController extends BaseController
                 ->select('users.id', 'users.username', 'users.last_name', 'users.first_name', 'users.email', 'users.permissions', 'users.activated');
         }
 
-        $users = $emptyUsers->paginate(Config::get('syntara::config.item-perge-page'));
+        $users = $emptyUsers->paginate(Config::get('mis::config.item-perge-page'));
         $datas['links'] = $users->links();
         $datas['users'] = $users;
 
         // ajax request : reload only content container
         if(Request::ajax())
         {
-            $html = View::make(Config::get('syntara::views.users-list'), array('datas' => $datas))->render();
+            $html = View::make(Config::get('mis::views.users-list'), array('datas' => $datas))->render();
 
             return Response::json(array('html' => $html));
         }
         
-        $this->layout = View::make(Config::get('syntara::views.users-index'), array('datas' => $datas));
-        $this->layout->title = trans('syntara::users.titles.list');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.users');
+        $this->layout = View::make(Config::get('mis::views.users-index'), array('datas' => $datas));
+        $this->layout->title = trans('mis::users.titles.list');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.users');
     }
     
     /**
@@ -77,9 +77,9 @@ class UserController extends BaseController
         $groups = Sentry::getGroupProvider()->findAll();
         $permissions = PermissionProvider::findAll();
         
-        $this->layout = View::make(Config::get('syntara::views.user-create'), array('groups' => $groups, 'permissions' => $permissions));
-        $this->layout->title = trans('syntara::users.titles.new');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_user');
+        $this->layout = View::make(Config::get('mis::views.user-create'), array('groups' => $groups, 'permissions' => $permissions));
+        $this->layout->title = trans('mis::users.titles.new');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.create_user');
     }
 
     /**
@@ -111,11 +111,11 @@ class UserController extends BaseController
 
             // activate user
             $activationCode = $user->getActivationCode();
-            if(Config::get('syntara::config.user-activation') === 'auto')
+            if(Config::get('mis::config.user-activation') === 'auto')
             {
                 $user->attemptActivation($activationCode);
             }
-            elseif(Config::get('syntara::config.user-activation') === 'email')
+            elseif(Config::get('mis::config.user-activation') === 'email')
             {
                 $datas = array(
                     'code' => $activationCode,
@@ -123,10 +123,10 @@ class UserController extends BaseController
                 );
 
                 // send email
-                Mail::queue(Config::get('syntara::mails.user-activation-view'), $datas, function($message) use ($user)
+                Mail::queue(Config::get('mis::mails.user-activation-view'), $datas, function($message) use ($user)
                 {
-                    $message->from(Config::get('syntara::mails.email'), Config::get('syntara::mails.contact'))
-                            ->subject(Config::get('syntara::mails.user-activation-object'));
+                    $message->from(Config::get('mis::mails.email'), Config::get('mis::mails.contact'))
+                            ->subject(Config::get('mis::mails.user-activation-object'));
                     $message->to($user->getLogin());
                 });
             }
@@ -146,11 +146,11 @@ class UserController extends BaseController
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e){}
         catch (\Cartalyst\Sentry\Users\UserExistsException $e)
         {
-            return json_encode(array('userCreated' => false, 'message' => trans('syntara::users.messages.user-email-exists'), 'messageType' => 'danger'));
+            return json_encode(array('userCreated' => false, 'message' => trans('mis::users.messages.user-email-exists'), 'messageType' => 'danger'));
         }
         catch(\Exception $e)
         {
-            return Response::json(array('userCreated' => false, 'message' => trans('syntara::users.messages.user-name-exists'), 'messageType' => 'danger'));
+            return Response::json(array('userCreated' => false, 'message' => trans('mis::users.messages.user-name-exists'), 'messageType' => 'danger'));
         }
 
         return json_encode(array('userCreated' => true, 'redirectUrl' => URL::route('listUsers')));
@@ -172,15 +172,15 @@ class UserController extends BaseController
             }
             else
             {
-                return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.remove-own-user'), 'messageType' => 'danger'));
+                return Response::json(array('deletedUser' => false, 'message' => trans('mis::users.messages.remove-own-user'), 'messageType' => 'danger'));
             }
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
+            return Response::json(array('deletedUser' => false, 'message' => trans('mis::users.messages.not-found'), 'messageType' => 'danger'));
         }
         
-        return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.remove-success'), 'messageType' => 'success'));
+        return Response::json(array('deletedUser' => true, 'message' => trans('mis::users.messages.remove-success'), 'messageType' => 'success'));
     }
 
     /**
@@ -198,14 +198,14 @@ class UserController extends BaseController
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
+            return Response::json(array('deletedUser' => false, 'message' => trans('mis::users.messages.not-found'), 'messageType' => 'danger'));
         }
         catch (\Cartalyst\Sentry\Users\UserAlreadyActivatedException $e)
         {
-            return Response::json(array('deletedUser' => false, 'message' => trans('syntara::users.messages.activate-already'), 'messageType' => 'danger'));
+            return Response::json(array('deletedUser' => false, 'message' => trans('mis::users.messages.activate-already'), 'messageType' => 'danger'));
         }
 
-        return Response::json(array('deletedUser' => true, 'message' => trans('syntara::users.messages.activate-success'), 'messageType' => 'success'));
+        return Response::json(array('deletedUser' => true, 'message' => trans('mis::users.messages.activate-success'), 'messageType' => 'success'));
     }
 
     /**
@@ -238,7 +238,7 @@ class UserController extends BaseController
             $message = trans("Your account could not be activated.");
         }
 
-        $this->layout = View::make(Config::get('syntara::views.user-activation'), array('activated' => $activated, 'message' => $message));
+        $this->layout = View::make(Config::get('mis::views.user-activation'), array('activated' => $activated, 'message' => $message));
     }
 
     /**
@@ -270,18 +270,18 @@ class UserController extends BaseController
                         }
                     }
                 }
-                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
+                catch(\Efusionsoft\Mis\Models\Permissions\PermissionNotFoundException $e){}
             }
             
             // ajax request : reload only content container
             if(Request::ajax())
             {
-                $html = View::make(Config::get('syntara::views.user-informations'), array('user' => $user, 'throttle' => $throttle))->render();
+                $html = View::make(Config::get('mis::views.user-informations'), array('user' => $user, 'throttle' => $throttle))->render();
 
                 return Response::json(array('html' => $html));
             }
 
-            $this->layout = View::make(Config::get('syntara::views.user-profile'), array(
+            $this->layout = View::make(Config::get('mis::views.user-profile'), array(
                 'user' => $user,
                 'throttle' => $throttle,
                 'groups' => $groups,
@@ -292,7 +292,7 @@ class UserController extends BaseController
             $this->layout->title = $user->username;
             $this->layout->breadcrumb = array(
                     array(
-                        'title' => trans('syntara::breadcrumbs.users'), 
+                        'title' => trans('mis::breadcrumbs.users'), 
                         'link' => URL::route('listUsers'), 
                         'icon' => 'glyphicon-user'
                     ), 
@@ -305,7 +305,7 @@ class UserController extends BaseController
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::users.messages.not-found')));
+            $this->layout = View::make(Config::get('mis::views.error'), array('message' => trans('mis::users.messages.not-found')));
         }
     }
 
@@ -381,20 +381,20 @@ class UserController extends BaseController
                     }
                 }
                 
-                return Response::json(array('userUpdated' => true, 'message' => trans('syntara::users.messages.update-success'), 'messageType' => 'success'));
+                return Response::json(array('userUpdated' => true, 'message' => trans('mis::users.messages.update-success'), 'messageType' => 'success'));
             }
             else 
             {
-                return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.update-fail'), 'messageType' => 'danger'));
+                return Response::json(array('userUpdated' => false, 'message' => trans('mis::users.messages.update-fail'), 'messageType' => 'danger'));
             }
         }
         catch(\Cartalyst\Sentry\Users\UserExistsException $e)
         {   
-            return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.user-email-exists'), 'messageType' => 'danger'));
+            return Response::json(array('userUpdated' => false, 'message' => trans('mis::users.messages.user-email-exists'), 'messageType' => 'danger'));
         }
         catch(\Exception $e)
         {
-            return Response::json(array('userUpdated' => false, 'message' => trans('syntara::users.messages.user-name-exists'), 'messageType' => 'danger'));
+            return Response::json(array('userUpdated' => false, 'message' => trans('mis::users.messages.user-name-exists'), 'messageType' => 'danger'));
         }
     }
 

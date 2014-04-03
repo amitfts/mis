@@ -7,11 +7,11 @@ In the require key of composer.json file add the following line
 
 If your application uses **Laravel 4.0** :
 
-```"mrjuliuss/syntara": "1.1.*"```
+```"efusionsoft\mis": "1.1.*"```
 
 If your application uses **Laravel 4.1** :
 
-```"mrjuliuss/syntara": "1.2.*"```
+```"efusionsoft\mis": "1.2.*"```
 
 Run the **Composer** update command
 
@@ -22,7 +22,7 @@ Run the **Composer** update command
 ### Config providers & alias
 
 In **app/config/app.php** <br/>
-Add ```'Cartalyst\Sentry\SentryServiceProvider'``` <br/>and ```'Mrjuliuss\Syntara\SyntaraServiceProvider'``` to the end of the **$providers** array
+Add ```'Cartalyst\Sentry\SentryServiceProvider'``` <br/>and ```'Efusionsoft\Mis\SyntaraServiceProvider'``` to the end of the **$providers** array
 
 
     'providers' => array(
@@ -30,7 +30,7 @@ Add ```'Cartalyst\Sentry\SentryServiceProvider'``` <br/>and ```'Mrjuliuss\Syntar
         'Illuminate\Auth\AuthServiceProvider',
         ...
         'Cartalyst\Sentry\SentryServiceProvider',
-        'Mrjuliuss\Syntara\SyntaraServiceProvider'
+        'Efusionsoft\Mis\SyntaraServiceProvider'
     ),
 
 Add  ```'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry'``` to the end of the **$aliases** array
@@ -47,7 +47,7 @@ Before the next step, don't forget to configure your database in ```app/config/d
 Please note that syntara is **not compatible with sqlite**.
 
 ### Install command
-```php artisan syntara:install```
+```php artisan mis:install```
 
 ### Create first user 
 
@@ -61,6 +61,6 @@ Now you can access to the login page : ```http://your-url/dashboard/login```
 ### Update command
 
 To update Syntara, you need to start an update via composer : ```composer update```
-After this update, just start ```php artisan syntara:update```
+After this update, just start ```php artisan mis:update```
 
 This command does the same as the install command, only it won't publish again the config files, overwriting your changes, allowing users to run any new database migrations or publish any new assets.

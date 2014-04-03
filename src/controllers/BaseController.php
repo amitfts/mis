@@ -1,6 +1,6 @@
 <?php 
 
-namespace MrJuliuss\Syntara\Controllers;
+namespace Efusionsoft\Mis\Controllers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
@@ -15,7 +15,7 @@ class BaseController extends Controller
     */
     protected function setupLayout()
     {
-        $this->layout = View::make(Config::get('syntara::views.master'));
+        $this->layout = View::make(Config::get('mis::views.master'));
 
         $this->layout->title = 'Syntara - Dashboard';
         $this->layout->breadcrumb = array();

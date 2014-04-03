@@ -1,4 +1,4 @@
-<label class="control-label">{{ trans('syntara::permissions.permissions')}}</label>
+<label class="control-label">{{ trans('mis::permissions.permissions')}}</label>
 <div class="input-group">
     <span class="input-group-addon"><span class="glyphicon glyphicon-plus-sign add-input"></span></span>
     <select class="form-control permissions-select">

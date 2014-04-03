@@ -1,6 +1,6 @@
 <?php
 
-namespace MrJuliuss\Syntara\Commands;
+namespace Efusionsoft\Mis\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -15,7 +15,7 @@ class UpdateCommand extends Command
      *
      * @var string
      */
-    protected $name = 'syntara:update';
+    protected $name = 'mis:update';
 
     /**
      * The console command description.
@@ -44,10 +44,10 @@ class UpdateCommand extends Command
         $this->info('## Syntara Update ##');
 
         // publish syntara assets
-        $this->call('asset:publish', array('package' => 'mrjuliuss/syntara' ) );
+        $this->call('asset:publish', array('package' => 'efusionsoft\mis' ) );
 
         // run migrations
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
-        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'mrjuliuss/syntara' ) );
+        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'efusionsoft\mis' ) );
     }
 }

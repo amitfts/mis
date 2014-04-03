@@ -1,11 +1,11 @@
 <?php 
 
-namespace MrJuliuss\Syntara\Commands;
+namespace Efusionsoft\Mis\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Config;
-use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
+use Efusionsoft\Mis\Services\Validators\User as UserValidator;
 
 class UserSeedCommand extends Command 
 {

@@ -3,11 +3,11 @@
     
     <div style="float:right;">
         @if($currentUser->hasAccess('delete-user'))
-        <a id="delete-item" class="btn btn-danger">{{ trans('syntara::all.delete') }}</a>
+        <a id="delete-item" class="btn btn-danger">{{ trans('mis::all.delete') }}</a>
         @endif
 
         @if($currentUser->hasAccess('create-user'))
-        <a class="btn btn-info btn-new" href="{{ URL::route('newUser') }}">{{ trans('syntara::users.new') }}</a>
+        <a class="btn btn-info btn-new" href="{{ URL::route('newUser') }}">{{ trans('mis::users.new') }}</a>
         @endif
     </div>
 </div>
@@ -18,17 +18,17 @@
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         @endif
         <th class="col-lg-1 hidden-xs" style="text-align: center;">Id</th>
-        <th class="col-lg-1">{{ trans('syntara::users.username') }}</th>
-        <th class="col-lg-2 visible-lg visible-xs">{{ trans('syntara::all.email') }}</th>
-        <th class="col-lg-2 hidden-xs">{{ trans('syntara::users.groups') }}</th>
-        <th class="col-lg-2 hidden-xs">{{ trans('syntara::users.permissions') }}</th>
-        <th class="col-lg-1 visible-lg">{{ trans('syntara::users.last-name') }}</th>
-        <th class="col-lg-1 visible-lg">{{ trans('syntara::users.first-name') }}</th>
-        <th class="col-lg-1 hidden-xs">{{ trans('syntara::users.activated') }}</th>
+        <th class="col-lg-1">{{ trans('mis::users.username') }}</th>
+        <th class="col-lg-2 visible-lg visible-xs">{{ trans('mis::all.email') }}</th>
+        <th class="col-lg-2 hidden-xs">{{ trans('mis::users.groups') }}</th>
+        <th class="col-lg-2 hidden-xs">{{ trans('mis::users.permissions') }}</th>
+        <th class="col-lg-1 visible-lg">{{ trans('mis::users.last-name') }}</th>
+        <th class="col-lg-1 visible-lg">{{ trans('mis::users.first-name') }}</th>
+        <th class="col-lg-1 hidden-xs">{{ trans('mis::users.activated') }}</th>
         @if($currentUser->hasAccess('update-user-info'))
-        <th class="col-lg-1 hidden-xs">{{ trans('syntara::users.banned') }}</th>
+        <th class="col-lg-1 hidden-xs">{{ trans('mis::users.banned') }}</th>
        
-        <th class="col-lg-1" style="text-align: center;">{{ trans('syntara::all.show') }}</th>
+        <th class="col-lg-1" style="text-align: center;">{{ trans('mis::all.show') }}</th>
         @endif
     </tr>
 </thead>
@@ -54,10 +54,10 @@
         <td class="hidden-xs">{{ json_encode($user->getPermissions()) }}</td>
         <td class="visible-lg">&nbsp;{{ $user->last_name }}</td>
         <td class="visible-lg">&nbsp;{{ $user->first_name }}</td>
-        <td class="hidden-xs">{{ $user->isActivated() ? trans('syntara::all.yes') : '<a class="activate-user" href="#" data-toggle="tooltip" title="'.trans('syntara::users.activate').'">'.trans('syntara::all.no').'</a>'}}</td>
+        <td class="hidden-xs">{{ $user->isActivated() ? trans('mis::all.yes') : '<a class="activate-user" href="#" data-toggle="tooltip" title="'.trans('mis::users.activate').'">'.trans('mis::all.no').'</a>'}}</td>
         @if($currentUser->hasAccess('update-user-info'))
-        <td class="hidden-xs">{{ $throttle->isBanned() ? trans('syntara::all.yes') : trans('syntara::all.no')}}</td>        
-        <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showUser', $user->getId()) }}">{{ trans('syntara::all.show') }}</a></td>
+        <td class="hidden-xs">{{ $throttle->isBanned() ? trans('mis::all.yes') : trans('mis::all.no')}}</td>        
+        <td style="text-align: center;">&nbsp;<a href="{{ URL::route('showUser', $user->getId()) }}">{{ trans('mis::all.show') }}</a></td>
         @endif
     </tr>
     @endforeach

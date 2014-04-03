@@ -1,12 +1,12 @@
-<?php namespace MrJuliuss\Syntara\Models\Permissions;
+<?php namespace Efusionsoft\Mis\Models\Permissions;
 
 use Illuminate\Support\Facades\Facade;
-use MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException;
-use MrJuliuss\Syntara\Models\Permissions\PermissionExistsException;
+use Efusionsoft\Mis\Models\Permissions\PermissionNotFoundException;
+use Efusionsoft\Mis\Models\Permissions\PermissionExistsException;
 
 class PermissionProvider
 {
-    protected $_model = 'MrJuliuss\Syntara\Models\Permissions\Permission';
+    protected $_model = 'Efusionsoft\Mis\Models\Permissions\Permission';
 
     /**
      * Create permission

@@ -1,9 +1,9 @@
 <?php
 
-namespace MrJuliuss\Syntara\Controllers;
+namespace Efusionsoft\Mis\Controllers;
 
-use MrJuliuss\Syntara\Controllers\BaseController;
-use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
+use Efusionsoft\Mis\Controllers\BaseController;
+use Efusionsoft\Mis\Services\Validators\User as UserValidator;
 use View;
 use Input;
 use Sentry;
@@ -18,9 +18,9 @@ class DashboardController extends BaseController
     */
     public function getIndex()
     {
-        $this->layout = View::make(Config::get('syntara::views.dashboard-index'));
-        $this->layout->title = trans('syntara::all.titles.index');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
+        $this->layout = View::make(Config::get('mis::views.dashboard-index'));
+        $this->layout->title = trans('mis::all.titles.index');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.dashboard');
     }
 
     /**
@@ -28,9 +28,9 @@ class DashboardController extends BaseController
     */
     public function getLogin()
     {
-        $this->layout = View::make(Config::get('syntara::views.login'));
-        $this->layout->title = trans('syntara::all.titles.login');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.login');
+        $this->layout = View::make(Config::get('mis::views.login'));
+        $this->layout->title = trans('mis::all.titles.login');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.login');
     }
 
     /**
@@ -58,11 +58,11 @@ class DashboardController extends BaseController
         }
         catch(\Cartalyst\Sentry\Throttling\UserBannedException $e)
         {
-            return Response::json(array('logged' => false, 'errorMessage' => trans('syntara::all.messages.banned'), 'errorType' => 'danger'));
+            return Response::json(array('logged' => false, 'errorMessage' => trans('mis::all.messages.banned'), 'errorType' => 'danger'));
         }
         catch (\RuntimeException $e)
         {
-            return Response::json(array('logged' => false, 'errorMessage' => trans('syntara::all.messages.login-failed'), 'errorType' => 'danger'));
+            return Response::json(array('logged' => false, 'errorMessage' => trans('mis::all.messages.login-failed'), 'errorType' => 'danger'));
         }
 
         return Response::json(array('logged' => true));
@@ -83,8 +83,8 @@ class DashboardController extends BaseController
     */
     public function getAccessDenied()
     {
-        $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::all.messages.denied')));
-        $this->layout->title = trans('syntara::all.titles.error');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.dashboard');
+        $this->layout = View::make(Config::get('mis::views.error'), array('message' => trans('mis::all.messages.denied')));
+        $this->layout->title = trans('mis::all.titles.error');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.dashboard');
     }
 }

@@ -1,6 +1,6 @@
 <?php 
 
-namespace MrJuliuss\Syntara\Helpers;
+namespace Efusionsoft\Mis\Helpers;
 
 use Illuminate\Support\Facades\URL;
 

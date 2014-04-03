@@ -3,71 +3,71 @@
 return array(
     'dashboard' => array(
         array(
-            'title' => trans('syntara::breadcrumbs.dashboard'),
+            'title' => trans('mis::breadcrumbs.dashboard'),
             'link' => URL::current(),
             'icon' => 'glyphicon-home'
         )
     ),
     'login' => array(
         array(
-            'title' => trans('syntara::breadcrumbs.login'),
+            'title' => trans('mis::breadcrumbs.login'),
             'link' => URL::route('getLogin'),
             'icon' => 'glyphicon-user'
         )
     ),
     'users' => array(
         array(
-            'title' => trans('syntara::breadcrumbs.users'),
+            'title' => trans('mis::breadcrumbs.users'),
             'link' => URL::route('listUsers'),
             'icon' => 'glyphicon-user'
         )
     ),
     'create_user' => array(
         array(
-            'title' => trans('syntara::breadcrumbs.users'),
+            'title' => trans('mis::breadcrumbs.users'),
             'link' => URL::route('listUsers'),
             'icon' => 'glyphicon-user'
         ), 
         array(
-            'title' => trans('syntara::breadcrumbs.new-user'),
+            'title' => trans('mis::breadcrumbs.new-user'),
             'link' => URL::current(),
             'icon' => 'glyphicon-plus-sign'
         )
     ),
     'groups' => array(
         array(
-            'title' => trans('syntara::breadcrumbs.groups'),
+            'title' => trans('mis::breadcrumbs.groups'),
             'link' => URL::route('listGroups'),
             'icon' => 'glyphicon-list-alt'
         )
     ),
     'create_group' => array(
         array(
-            'title' => trans('syntara::breadcrumbs.groups'),
+            'title' => trans('mis::breadcrumbs.groups'),
             'link' => URL::route('listGroups'),
             'icon' => 'glyphicon-list-alt'
         ),
         array(
-            'title' => trans('syntara::breadcrumbs.new-group'),
+            'title' => trans('mis::breadcrumbs.new-group'),
             'link' => URL::current(),
             'icon' => 'glyphicon-plus-sign'
         )
     ),
     'permissions' => array(
        array(
-            'title' => trans('syntara::breadcrumbs.permissions'),
+            'title' => trans('mis::breadcrumbs.permissions'),
             'link' => URL::route('listPermissions'),
             'icon' => 'glyphicon-ban-circle'
         )
     ),
     'create_permission' => array(
         array(
-            'title' => trans('syntara::breadcrumbs.permissions'),
+            'title' => trans('mis::breadcrumbs.permissions'),
             'link' => URL::route('listPermissions'),
             'icon' => 'glyphicon-ban-circle'
         ),
         array(
-            'title' => trans('syntara::breadcrumbs.new-permission'),
+            'title' => trans('mis::breadcrumbs.new-permission'),
             'link' => URL::current(),
             'icon' => 'glyphicon-plus-sign'
         )

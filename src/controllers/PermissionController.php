@@ -1,7 +1,7 @@
-<?php namespace MrJuliuss\Syntara\Controllers;
+<?php namespace Efusionsoft\Mis\Controllers;
 
-use MrJuliuss\Syntara\Controllers\BaseController;
-use MrJuliuss\Syntara\Services\Validators\Permission as PermissionValidator;
+use Efusionsoft\Mis\Controllers\BaseController;
+use Efusionsoft\Mis\Services\Validators\Permission as PermissionValidator;
 use Paginator;
 use PermissionProvider;
 use View;
@@ -36,19 +36,19 @@ class PermissionController extends BaseController
             $permissions = $permissions->where('value', 'LIKE', '%'.$permissionValue.'%');
         }
 
-        $permissions = $permissions->paginate(Config::get('syntara::config.item-perge-page'));
+        $permissions = $permissions->paginate(Config::get('mis::config.item-perge-page'));
 
         // ajax request : reload only content container
         if(Request::ajax())
         {
-            $html = View::make(Config::get('syntara::views.permissions-list'), array('permissions' => $permissions))->render();
+            $html = View::make(Config::get('mis::views.permissions-list'), array('permissions' => $permissions))->render();
             
             return Response::json(array('html' => $html));
         }
 
-        $this->layout = View::make(Config::get('syntara::views.permissions-index'), array('permissions' => $permissions));
-        $this->layout->title = trans('syntara::permissions.titles.list');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.permissions');
+        $this->layout = View::make(Config::get('mis::views.permissions-index'), array('permissions' => $permissions));
+        $this->layout->title = trans('mis::permissions.titles.list');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.permissions');
     }
 
     /**
@@ -56,9 +56,9 @@ class PermissionController extends BaseController
      */
     public function getCreate()
     {
-        $this->layout = View::make(Config::get('syntara::views.permission-create'));
-        $this->layout->title = trans('syntara::permissions.titles.new');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_permission');
+        $this->layout = View::make(Config::get('mis::views.permission-create'));
+        $this->layout->title = trans('mis::permissions.titles.new');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.create_permission');
     }
 
     /**
@@ -77,11 +77,11 @@ class PermissionController extends BaseController
             // create permission
             $permission = PermissionProvider::createPermission(Input::all());
         }
-        catch (\MrJuliuss\Syntara\Models\Permissions\NameRequiredException $e) {}
-        catch (\MrJuliuss\Syntara\Models\Permissions\ValueRequiredException $e) {}
-        catch (\MrJuliuss\Syntara\Models\Permissions\PermissionExistsException $e)
+        catch (\Efusionsoft\Mis\Models\Permissions\NameRequiredException $e) {}
+        catch (\Efusionsoft\Mis\Models\Permissions\ValueRequiredException $e) {}
+        catch (\Efusionsoft\Mis\Models\Permissions\PermissionExistsException $e)
         {
-            return json_encode(array('permissionCreated' => false, 'message' => trans('syntara::permissions.messages.exists'), 'messageType' => 'danger'));
+            return json_encode(array('permissionCreated' => false, 'message' => trans('mis::permissions.messages.exists'), 'messageType' => 'danger'));
         }
 
         return json_encode(array('permissionCreated' => true, 'redirectUrl' => URL::route('listPermissions')));
@@ -97,13 +97,13 @@ class PermissionController extends BaseController
         {
             $permission = PermissionProvider::findById($permissionId);
             
-            $this->layout = View::make(Config::get('syntara::views.permission-edit'), array(
+            $this->layout = View::make(Config::get('mis::views.permission-edit'), array(
                 'permission' => $permission,
             ));
             $this->layout->title = 'Permission '.$permission->getName();
             $this->layout->breadcrumb = array(
                     array(
-                        'title' => trans('syntara::breadcrumbs.permissions'),
+                        'title' => trans('mis::breadcrumbs.permissions'),
                         'link' => URL::route('listPermissions'),
                         'icon' => 'glyphicon-ban-circle'
                     ),
@@ -114,9 +114,9 @@ class PermissionController extends BaseController
                     )
             );
         }
-        catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
+        catch (\Efusionsoft\Mis\Models\Permissions\PermissionNotFoundException $e)
         {
-            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::permissions.messages.not-found')));
+            $this->layout = View::make(Config::get('mis::views.error'), array('message' => trans('mis::permissions.messages.not-found')));
         }
     }
 
@@ -142,16 +142,16 @@ class PermissionController extends BaseController
             // Update the permission
             if($permission->save())
             {
-                return Response::json(array('permissionUpdated' => true, 'message' => trans('syntara::permissions.messages.update-success'), 'messageType' => 'success'));
+                return Response::json(array('permissionUpdated' => true, 'message' => trans('mis::permissions.messages.update-success'), 'messageType' => 'success'));
             }
             else 
             {
-                return Response::json(array('permissionUpdated' => false, 'message' => trans('syntara::permissions.messages.update-fail'), 'messageType' => 'danger'));
+                return Response::json(array('permissionUpdated' => false, 'message' => trans('mis::permissions.messages.update-fail'), 'messageType' => 'danger'));
             }
         }
-        catch (\MrJuliuss\Syntara\Models\Permissions\PermissionExistsException $e)
+        catch (\Efusionsoft\Mis\Models\Permissions\PermissionExistsException $e)
         {
-            return Response::json(array('permissionUpdated' => false, 'message' => trans('syntara::permissions.messages.exists'), 'messageType' => 'danger'));
+            return Response::json(array('permissionUpdated' => false, 'message' => trans('mis::permissions.messages.exists'), 'messageType' => 'danger'));
         }
     }
 
@@ -165,11 +165,11 @@ class PermissionController extends BaseController
             $permission = PermissionProvider::findById($permissionId);
             $permission->delete();
         }
-        catch (\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e)
+        catch (\Efusionsoft\Mis\Models\Permissions\PermissionNotFoundException $e)
         {
-            return Response::json(array('deletePermission' => false, 'message' => trans('syntara::permissions.messages.not-found'), 'messageType' => 'danger'));
+            return Response::json(array('deletePermission' => false, 'message' => trans('mis::permissions.messages.not-found'), 'messageType' => 'danger'));
         }
 
-        return Response::json(array('deletePermission' => true, 'message' => trans('syntara::permissions.messages.remove-success'), 'messageType' => 'success'));
+        return Response::json(array('deletePermission' => true, 'message' => trans('mis::permissions.messages.remove-success'), 'messageType' => 'success'));
     }
 }

@@ -1,4 +1,4 @@
-<?php namespace MrJuliuss\Syntara\Models\Permissions;
+<?php namespace Efusionsoft\Mis\Models\Permissions;
 
 class PermissionNotFoundException extends  \OutOfBoundsException {}
 class PermissionExistsException extends \UnexpectedValueException {}

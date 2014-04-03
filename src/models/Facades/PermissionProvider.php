@@ -1,4 +1,4 @@
-<?php namespace MrJuliuss\Syntara\Facades;
+<?php namespace Efusionsoft\Mis\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

@@ -1,9 +1,9 @@
 <?php 
 
-namespace MrJuliuss\Syntara\Controllers;
+namespace Efusionsoft\Mis\Controllers;
 
-use MrJuliuss\Syntara\Controllers\BaseController;
-use MrJuliuss\Syntara\Services\Validators\Group as GroupValidator;
+use Efusionsoft\Mis\Controllers\BaseController;
+use Efusionsoft\Mis\Services\Validators\Group as GroupValidator;
 use PermissionProvider;
 use View;
 use Input;
@@ -35,19 +35,19 @@ class GroupController extends BaseController
             $emptyGroup = $emptyGroup->where('name', 'LIKE', '%'.$groupname.'%');
         }
 
-        $groups = $emptyGroup->paginate(Config::get('syntara::config.item-perge-page'));
+        $groups = $emptyGroup->paginate(Config::get('mis::config.item-perge-page'));
 
         // ajax: reload only the content container
         if(Request::ajax())
         {
-            $html = View::make(Config::get('syntara::views.groups-list'), array('groups' => $groups))->render();
+            $html = View::make(Config::get('mis::views.groups-list'), array('groups' => $groups))->render();
             
             return Response::json(array('html' => $html));
         }
         
-        $this->layout = View::make(Config::get('syntara::views.groups-index'), array('groups' => $groups));
-        $this->layout->title = trans('syntara::groups.titles.list');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.groups');
+        $this->layout = View::make(Config::get('mis::views.groups-index'), array('groups' => $groups));
+        $this->layout->title = trans('mis::groups.titles.list');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.groups');
     }
     
     /**
@@ -57,9 +57,9 @@ class GroupController extends BaseController
     {
         $permissions = PermissionProvider::findAll();
 
-        $this->layout = View::make(Config::get('syntara::views.group-create'), array('permissions' => $permissions));
-        $this->layout->title = trans('syntara::groups.titles.new');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.create_group');
+        $this->layout = View::make(Config::get('mis::views.group-create'), array('permissions' => $permissions));
+        $this->layout->title = trans('mis::groups.titles.new');
+        $this->layout->breadcrumb = Config::get('mis::breadcrumbs.create_group');
     }
 
     /**
@@ -89,7 +89,7 @@ class GroupController extends BaseController
             catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
             catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
             {
-                return Response::json(array('groupCreated' => false, 'message' => trans('syntara::groups.messages.exists'), 'messageType' => 'danger'));
+                return Response::json(array('groupCreated' => false, 'message' => trans('mis::groups.messages.exists'), 'messageType' => 'danger'));
             }
         }
 
@@ -123,7 +123,7 @@ class GroupController extends BaseController
                         }
                     }
                 }
-                catch(\MrJuliuss\Syntara\Models\Permissions\PermissionNotFoundException $e){}
+                catch(\Efusionsoft\Mis\Models\Permissions\PermissionNotFoundException $e){}
             }
 
             $userids = array();
@@ -150,16 +150,16 @@ class GroupController extends BaseController
             // ajax request : reload only content container
             if(Request::ajax())
             {
-                $html = View::make(Config::get('syntara::views.users-in-group'), array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers))->render();
+                $html = View::make(Config::get('mis::views.users-in-group'), array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers))->render();
                 
                 return Response::json(array('html' => $html));
             }
             
-            $this->layout = View::make(Config::get('syntara::views.group-edit'), array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
+            $this->layout = View::make(Config::get('mis::views.group-edit'), array('group' => $group, 'users' => $users, 'candidateUsers' => $candidateUsers, 'permissions' => $permissions, 'ownPermissions' => $groupPermissions));
             $this->layout->title = 'Group '.$group->getName();
             $this->layout->breadcrumb = array(
                 array(
-                    'title' => trans('syntara::breadcrumbs.groups'), 
+                    'title' => trans('mis::breadcrumbs.groups'), 
                     'link' => URL::route('listGroups'), 
                     'icon' => 'glyphicon-list-alt'
                 ), 
@@ -172,7 +172,7 @@ class GroupController extends BaseController
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            $this->layout = View::make(Config::get('syntara::views.error'), array('message' => trans('syntara::groups.messages.not-found')));
+            $this->layout = View::make(Config::get('mis::views.error'), array('message' => trans('mis::groups.messages.not-found')));
         }
     }
 
@@ -207,17 +207,17 @@ class GroupController extends BaseController
 
                 if($group->save())
                 {
-                    return Response::json(array('groupUpdated' => true, 'message' => trans('syntara::groups.messages.success'), 'messageType' => 'success'));
+                    return Response::json(array('groupUpdated' => true, 'message' => trans('mis::groups.messages.success'), 'messageType' => 'success'));
                 }
                 else 
                 {
-                    return Response::json(array('groupUpdated' => false, 'message' => trans('syntara::groups.messages.try'), 'messageType' => 'danger'));
+                    return Response::json(array('groupUpdated' => false, 'message' => trans('mis::groups.messages.try'), 'messageType' => 'danger'));
                 }
             }
             catch (\Cartalyst\Sentry\Groups\NameRequiredException $e) {}
             catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
             {
-                return Response::json(array('groupUpdated' => false, 'message' => trans('syntara::groups.messages.exists'), 'messageType' => 'danger'));
+                return Response::json(array('groupUpdated' => false, 'message' => trans('mis::groups.messages.exists'), 'messageType' => 'danger'));
             }
         }
     }
@@ -236,10 +236,10 @@ class GroupController extends BaseController
         }
         catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            return Response::json(array('deletedGroup' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
+            return Response::json(array('deletedGroup' => false, 'message' => trans('mis::groups.messages.not-found'), 'messageType' => 'danger'));
         }
         
-        return Response::json(array('deletedGroup' => true, 'message' => trans('syntara::groups.messages.delete-success'), 'messageType' => 'success'));
+        return Response::json(array('deletedGroup' => true, 'message' => trans('mis::groups.messages.delete-success'), 'messageType' => 'success'));
     }
     
     /**
@@ -256,15 +256,15 @@ class GroupController extends BaseController
             $group = Sentry::getGroupProvider()->findById($groupId);
             $user->removeGroup($group);
             
-            return Response::json(array('userDeleted' => true, 'message' => trans('syntara::groups.messages.user-removed-success'), 'messageType' => 'success'));
+            return Response::json(array('userDeleted' => true, 'message' => trans('mis::groups.messages.user-removed-success'), 'messageType' => 'success'));
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('userDeleted' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
+            return Response::json(array('userDeleted' => false, 'message' => trans('mis::users.messages.not-found'), 'messageType' => 'danger'));
         }
         catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            return Response::json(array('userDeleted' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
+            return Response::json(array('userDeleted' => false, 'message' => trans('mis::groups.messages.not-found'), 'messageType' => 'danger'));
         }
     }
     
@@ -283,15 +283,15 @@ class GroupController extends BaseController
             $group = Sentry::getGroupProvider()->findById($groupId);
             $user->addGroup($group);
 
-            return Response::json(array('userAdded' => true, 'message' => trans('syntara::groups.messages.user-add-success'), 'messageType' => 'success'));
+            return Response::json(array('userAdded' => true, 'message' => trans('mis::groups.messages.user-add-success'), 'messageType' => 'success'));
         }
         catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            return Response::json(array('userAdded' => false, 'message' => trans('syntara::users.messages.not-found'), 'messageType' => 'danger'));
+            return Response::json(array('userAdded' => false, 'message' => trans('mis::users.messages.not-found'), 'messageType' => 'danger'));
         }
         catch(\Cartalyst\Sentry\Groups\GroupNotFoundException $e)
         {
-            return Response::json(array('userAdded' => false, 'message' => trans('syntara::groups.messages.not-found'), 'messageType' => 'danger'));
+            return Response::json(array('userAdded' => false, 'message' => trans('mis::groups.messages.not-found'), 'messageType' => 'danger'));
         }
     }
 

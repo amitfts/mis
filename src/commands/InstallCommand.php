@@ -1,6 +1,6 @@
 <?php
 
-namespace MrJuliuss\Syntara\Commands;
+namespace Efusionsoft\Mis\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -15,7 +15,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $name = 'syntara:install';
+    protected $name = 'mis:install';
 
     /**
      * The console command description.
@@ -47,14 +47,14 @@ class InstallCommand extends Command
         $this->call('config:publish', array('package' => 'cartalyst/sentry' ) );
 
         // publish syntara config
-        $this->call('config:publish', array('package' => 'mrjuliuss/syntara' ) );
+        $this->call('config:publish', array('package' => 'efusionsoft\mis' ) );
 
         // publish syntara assets
-        $this->call('asset:publish', array('package' => 'mrjuliuss/syntara' ) );
+        $this->call('asset:publish', array('package' => 'efusionsoft\mis' ) );
 
         // run migrations
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
-        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'mrjuliuss/syntara' ) );
+        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'efusionsoft\mis' ) );
 
         // create admin group
         try
