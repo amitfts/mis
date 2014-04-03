@@ -2,7 +2,7 @@
 
 @section('content')
 
-<script src="{{ asset('packages/efusionsoft\mis/assets/js/dashboard/user.js') }}"></script>
+<script src="{{ asset('packages/efusionsoft/mis/assets/js/dashboard/user.js') }}"></script>
 <div class="container" id="main-container">
     <div class="row">
         <div class="col-lg-8">

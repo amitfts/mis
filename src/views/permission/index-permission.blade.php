@@ -1,7 +1,7 @@
 @extends(Config::get('mis::views.master'))
 
 @section('content')
-<script src="{{ asset('packages/efusionsoft\mis/assets/js/dashboard/permission.js') }}"></script>
+<script src="{{ asset('packages/efusionsoft/mis/assets/js/dashboard/permission.js') }}"></script>
 @include('mis::layouts.dashboard.confirmation-modal',  array('title' => trans('mis::all.confirm-delete-title'), 'content' => trans('mis::all.confirm-delete-message'), 'type' => 'delete-permission'))
 <div class="container" id="main-container">
     <div class="row">

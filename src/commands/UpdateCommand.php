@@ -44,10 +44,10 @@ class UpdateCommand extends Command
         $this->info('## Mis Update ##');
 
         // publish syntara assets
-        $this->call('asset:publish', array('package' => 'efusionsoft\mis' ) );
+        $this->call('asset:publish', array('package' => 'efusionsoft/mis' ) );
 
         // run migrations
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
-        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'efusionsoft\mis' ) );
+        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'efusionsoft/mis' ) );
     }
 }

@@ -122,12 +122,12 @@ To add your own favicon to Mis, you need to use a view composer
 ** Not yet release, available only on development branch **
 
 Possibility to change number of items per page in lists (users/groups/permissions) 
-Change the ```item-perge-page``` value in the main config file : ```app/config/packages/efusionsoft\mis/config.php```
+Change the ```item-perge-page``` value in the main config file : ```app/config/packages/efusionsoft/mis/config.php```
 
 
 ## Change validator rules
 
-Change rules in the published validator config file : ```app/config/packages/efusionsoft\mis/validator.php```
+Change rules in the published validator config file : ```app/config/packages/efusionsoft/mis/validator.php```
 
 more informations about rules : http://laravel.com/docs/validation
 
@@ -176,7 +176,7 @@ http://docs.cartalyst.com/sentry-2
 
 ** Not yet release, available only on development branch ** 
 
-While creating user, he can be automatically activated or activated from an email. By default, user is activated automatically, you can change the activation in **app/config/packages/efusionsoft\mis/config.php**, change ```user-activation``` from **auto** to **email**
+While creating user, he can be automatically activated or activated from an email. By default, user is activated automatically, you can change the activation in **app/config/packages/efusionsoft/mis/config.php**, change ```user-activation``` from **auto** to **email**
 
     <?php
 
@@ -197,7 +197,7 @@ Emails sent from Mis are automatically send in a queue. For better performance y
 
 Change the email activation view :
 
-In **app/config/packages/efusionsoft\mis/mails.php**, change ```user-activation-view``` with your custom view
+In **app/config/packages/efusionsoft/mis/mails.php**, change ```user-activation-view``` with your custom view
 
     <?php
     return array(
@@ -211,21 +211,21 @@ In **app/config/packages/efusionsoft\mis/mails.php**, change ```user-activation-
 
 Possibility to change the email object :
 
-In **app/config/packages/efusionsoft\mis/mails.php**, change ```user-activation-object``` with your custom object
+In **app/config/packages/efusionsoft/mis/mails.php**, change ```user-activation-object``` with your custom object
 
 ### Email contact name
 
 Possibility to change the email contact name :
 
-In **app/config/packages/efusionsoft\mis/mails.php**, change ```contact``` with your custom name
+In **app/config/packages/efusionsoft/mis/mails.php**, change ```contact``` with your custom name
 
 ### Email sender
 
 Possibility to change the email sender :
 
-In **app/config/packages/efusionsoft\mis/mails.php**, change ```email``` with your custom email
+In **app/config/packages/efusionsoft/mis/mails.php**, change ```email``` with your custom email
 
 ## RTL (Right to Left) languages
 
 Since 1.1.19 & 1.2.3, Mis support RTL languages.
-In **app/config/packages/efusionsoft\mis/config.php** , change ```direction``` from **LTR** to **RTL**
+In **app/config/packages/efusionsoft/mis/config.php** , change ```direction``` from **LTR** to **RTL**

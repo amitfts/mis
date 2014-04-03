@@ -4,9 +4,9 @@ Mis is an admin system for Laravel 4, made for user management easier.
 
 
 [![Build Status](https://travis-ci.org/MrJuliuss/syntara.png?branch=master)](https://travis-ci.org/MrJuliuss/syntara)
-[![Latest Stable Version](https://poser.pugx.org/efusionsoft\mis/v/stable.png)](https://packagist.org/packages/efusionsoft\mis)
-[![Total Downloads](https://poser.pugx.org/efusionsoft\mis/downloads.png)](https://packagist.org/packages/efusionsoft\mis)
-[![License](https://poser.pugx.org/efusionsoft\mis/license.png)](https://packagist.org/packages/efusionsoft\mis)
+[![Latest Stable Version](https://poser.pugx.org/efusionsoft/mis/v/stable.png)](https://packagist.org/packages/efusionsoft/mis)
+[![Total Downloads](https://poser.pugx.org/efusionsoft/mis/downloads.png)](https://packagist.org/packages/efusionsoft/mis)
+[![License](https://poser.pugx.org/efusionsoft/mis/license.png)](https://packagist.org/packages/efusionsoft/mis)
 
 <img src="https://raw.github.com/MrJuliuss/syntara/master/screenshots/user_list.png" width="900" />
 

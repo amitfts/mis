@@ -47,14 +47,14 @@ class InstallCommand extends Command
         $this->call('config:publish', array('package' => 'cartalyst/sentry' ) );
 
         // publish syntara config
-        $this->call('config:publish', array('package' => 'efusionsoft\mis' ) );
+        $this->call('config:publish', array('package' => 'efusionsoft/mis' ) );
 
         // publish syntara assets
-        $this->call('asset:publish', array('package' => 'efusionsoft\mis' ) );
+        $this->call('asset:publish', array('package' => 'efusionsoft/mis' ) );
 
         // run migrations
         $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'cartalyst/sentry' ) );
-        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'efusionsoft\mis' ) );
+        $this->call('migrate', array('--env' => $this->option('env'), '--package' => 'efusionsoft/mis' ) );
 
         // create admin group
         try

@@ -7,11 +7,11 @@ In the require key of composer.json file add the following line
 
 If your application uses **Laravel 4.0** :
 
-```"efusionsoft\mis": "1.1.*"```
+```"efusionsoft/mis": "1.1.*"```
 
 If your application uses **Laravel 4.1** :
 
-```"efusionsoft\mis": "1.2.*"```
+```"efusionsoft/mis": "1.2.*"```
 
 Run the **Composer** update command
 

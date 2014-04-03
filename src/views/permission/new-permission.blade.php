@@ -1,7 +1,7 @@
 @extends(Config::get('mis::views.master'))
 
 @section('content')
-<script src="{{ asset('packages/efusionsoft\mis/assets/js/dashboard/permission.js') }}"></script>
+<script src="{{ asset('packages/efusionsoft/mis/assets/js/dashboard/permission.js') }}"></script>
 <div class="container" id="main-container">
     <div class="row">
         <div class="col-lg-6">
