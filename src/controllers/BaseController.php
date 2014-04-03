@@ -17,7 +17,7 @@ class BaseController extends Controller
     {
         $this->layout = View::make(Config::get('mis::views.master'));
 
-        $this->layout->title = 'Syntara - Dashboard';
+        $this->layout->title = 'Mis - Dashboard';
         $this->layout->breadcrumb = array();
     }
 }

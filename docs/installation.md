@@ -22,7 +22,7 @@ Run the **Composer** update command
 ### Config providers & alias
 
 In **app/config/app.php** <br/>
-Add ```'Cartalyst\Sentry\SentryServiceProvider'``` <br/>and ```'Efusionsoft\Mis\SyntaraServiceProvider'``` to the end of the **$providers** array
+Add ```'Cartalyst\Sentry\SentryServiceProvider'``` <br/>and ```'Efusionsoft\Mis\MisServiceProvider'``` to the end of the **$providers** array
 
 
     'providers' => array(
@@ -30,7 +30,7 @@ Add ```'Cartalyst\Sentry\SentryServiceProvider'``` <br/>and ```'Efusionsoft\Mis\
         'Illuminate\Auth\AuthServiceProvider',
         ...
         'Cartalyst\Sentry\SentryServiceProvider',
-        'Efusionsoft\Mis\SyntaraServiceProvider'
+        'Efusionsoft\Mis\MisServiceProvider'
     ),
 
 Add  ```'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry'``` to the end of the **$aliases** array
@@ -60,7 +60,7 @@ Now you can access to the login page : ```http://your-url/dashboard/login```
 
 ### Update command
 
-To update Syntara, you need to start an update via composer : ```composer update```
+To update Mis, you need to start an update via composer : ```composer update```
 After this update, just start ```php artisan mis:update```
 
 This command does the same as the install command, only it won't publish again the config files, overwriting your changes, allowing users to run any new database migrations or publish any new assets.

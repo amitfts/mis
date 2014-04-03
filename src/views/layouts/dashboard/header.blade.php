@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="{{ (!empty($siteUrl)) ? $siteUrl : '/'}} " target="_new">
-            {{ (!empty($siteName)) ? $siteName : "Syntara"}}
+            {{ (!empty($siteName)) ? $siteName : "Mis"}}
 
             <div class="visible-sm"><img class="ajax-loader ajax-loader-sm" src="{{ asset('packages/efusionsoft\mis/assets/img/ajax-load.gif') }}" style="float: right;"/></div>
         </a>

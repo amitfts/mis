@@ -22,7 +22,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Syntara install command';
+    protected $description = 'Mis install command';
 
     /**
      * Create a new command instance.
@@ -41,7 +41,7 @@ class InstallCommand extends Command
      */
     public function fire()
     {
-        $this->info('## Syntara Install ##');
+        $this->info('## Mis Install ##');
 
         // publish sentry config
         $this->call('config:publish', array('package' => 'cartalyst/sentry' ) );

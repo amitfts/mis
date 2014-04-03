@@ -22,7 +22,7 @@ class UpdateCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Syntara update command';
+    protected $description = 'Mis update command';
 
     /**
      * Create a new command instance.
@@ -41,7 +41,7 @@ class UpdateCommand extends Command
      */
     public function fire()
     {
-        $this->info('## Syntara Update ##');
+        $this->info('## Mis Update ##');
 
         // publish syntara assets
         $this->call('asset:publish', array('package' => 'efusionsoft\mis' ) );

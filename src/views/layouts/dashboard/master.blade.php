@@ -20,7 +20,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script src="{{ asset('packages/efusionsoft\mis/assets/js/dashboard/base.js') }}"></script>
 
-        <title>{{ (!empty($siteName)) ? $siteName : "Syntara"}} - {{isset($title) ? $title : '' }}</title>
+        <title>{{ (!empty($siteName)) ? $siteName : "Mis"}} - {{isset($title) ? $title : '' }}</title>
     </head>
     <body>
         @include(Config::get('mis::views.header'))

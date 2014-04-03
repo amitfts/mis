@@ -39,7 +39,7 @@ Same as 1.1.18
 
 ##1.1.18
 
-* Refactoring code (deleting src/start.php, routes & filters are now loaded in SyntaraServiceProvider)
+* Refactoring code (deleting src/start.php, routes & filters are now loaded in MisServiceProvider)
 * Dutch support
 * Turkish support
 * Swedish support
@@ -80,7 +80,7 @@ Same as 1.1.17
 * i18 support : vietnamese
 * Possibility to add favicon
 * Upgrade to Bootstrap 3.0.2
-* Add Syntara Update command
+* Add Mis Update command
 * Possibility to change master layout
 * Possibility to change dashboard uri
 
@@ -110,7 +110,7 @@ Same as 1.1.17
 
 ##1.1.8
 
-* Prepare Syntara for Syntara Logviewer (https://github.com/MrJuliuss/syntara-logviewer)
+* Prepare Mis for Mis Logviewer (https://github.com/MrJuliuss/syntara-logviewer)
 
 ##1.1.7
 
@@ -120,7 +120,7 @@ Same as 1.1.17
 
 ##1.1.6
 
-* Fixing errors (appeared with Syntara 1.1.5) on install
+* Fixing errors (appeared with Mis 1.1.5) on install
 
 ##1.1.5
 

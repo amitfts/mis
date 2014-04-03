@@ -5,7 +5,7 @@ return array(
     /**
      * contact name
      */
-    'contact' => 'Syntara',
+    'contact' => 'Mis',
 
     /**
      * Admin mail

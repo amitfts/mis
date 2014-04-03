@@ -1,6 +1,6 @@
-# Syntara
+# Mis
 
-Syntara is an admin system for Laravel 4, made for user management easier.
+Mis is an admin system for Laravel 4, made for user management easier.
 
 
 [![Build Status](https://travis-ci.org/MrJuliuss/syntara.png?branch=master)](https://travis-ci.org/MrJuliuss/syntara)
@@ -34,8 +34,8 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 
 ## Requirements
 
-* Syntara 1.1.x : PHP 5.3+ - Laravel 4.0.x
-* Syntara 1.2.x : PHP 5.4+ - Laravel 4.1.x
+* Mis 1.1.x : PHP 5.3+ - Laravel 4.0.x
+* Mis 1.2.x : PHP 5.4+ - Laravel 4.1.x
 
 ## Dependencies
 

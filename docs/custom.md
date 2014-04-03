@@ -2,7 +2,7 @@
 
 ## New features
 
-You must extend your new controller with the Syntara BaseController, like this :
+You must extend your new controller with the Mis BaseController, like this :
 
     /*
     app/controller/FeatureControler.php
@@ -108,7 +108,7 @@ View ```left-nav.blade.php``` example :
 
 ## Favicon
 
-To add your own favicon to Syntara, you need to use a view composer
+To add your own favicon to Mis, you need to use a view composer
 
     View::composer('mis::layouts.dashboard.master', function($view)
     {
@@ -169,7 +169,7 @@ Create an empty permission
 
 ## User / Group models
 
-Syntara uses Sentry 2 models for Users & Groups management, please read Sentry 2 docs :
+Mis uses Sentry 2 models for Users & Groups management, please read Sentry 2 docs :
 http://docs.cartalyst.com/sentry-2
 
 ## User activation by email
@@ -191,7 +191,7 @@ While creating user, he can be automatically activated or activated from an emai
 
 ### Email in queue
 
-Emails sent from Syntara are automatically send in a queue. For better performance you need to config a queue component in your application : http://laravel.com/docs/queues
+Emails sent from Mis are automatically send in a queue. For better performance you need to config a queue component in your application : http://laravel.com/docs/queues
 
 ### Email view
 
@@ -227,5 +227,5 @@ In **app/config/packages/efusionsoft\mis/mails.php**, change ```email``` with yo
 
 ## RTL (Right to Left) languages
 
-Since 1.1.19 & 1.2.3, Syntara support RTL languages.
+Since 1.1.19 & 1.2.3, Mis support RTL languages.
 In **app/config/packages/efusionsoft\mis/config.php** , change ```direction``` from **LTR** to **RTL**
