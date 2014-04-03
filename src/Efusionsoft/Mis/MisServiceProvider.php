@@ -18,7 +18,7 @@ class MisServiceProvider extends ServiceProvider
     public function boot() 
     {
        
-        $this->package('efusionsoft\mis');
+        $this->package('efusionsoft/mis');
         $this->loadIncludes();
     }
 
@@ -31,7 +31,7 @@ class MisServiceProvider extends ServiceProvider
     {
         // load package config
         //echo 'hello';die;
-        $this->app['config']->package('efusionsoft\mis', __DIR__.'/../../config');
+        $this->app['config']->package('efusionsoft/mis', __DIR__.'/../../config');
 
         // add the user seed command to the application
         $this->app['create:user'] = $this->app->share(function($app)
